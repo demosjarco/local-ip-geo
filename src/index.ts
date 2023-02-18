@@ -5,14 +5,20 @@ export interface Env {
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		let tempHeaders: Record<string, string> = {};
-		request.headers.forEach((value, key) => {
-			tempHeaders[key] = value;
-		});
-		return new Response(JSON.stringify(tempHeaders, null, process.env.NODE_ENV === 'development' ? '\t' : undefined), {
-			headers: {
-				'Content-Type': 'application/json',
+		return new Response(
+			JSON.stringify(
+				{
+					lat: request.headers.get('cf-iplatitude'),
+					long: request.headers.get('cf-iplongitude'),
+				},
+				null,
+				process.env.NODE_ENV === 'development' ? '\t' : undefined,
+			),
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
 			},
-		});
+		);
 	},
 };
