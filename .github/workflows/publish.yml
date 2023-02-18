@@ -23,6 +23,13 @@ jobs:
         with:
           disable-sudo: true
           egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+          # egress-policy: block
+          # allowed-endpoints: >
+          #   api.cloudflare.com:443
+          #   api.github.com:443
+          #   github.com:443
+          #   objects.githubusercontent.com:443
+          #   registry.npmjs.org:443
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
