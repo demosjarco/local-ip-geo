@@ -4,7 +4,7 @@
 	"scripts": {
 		"prettier": "prettier --check .",
 		"prettier:fix": "prettier --write .",
-		"dev": "wrangler dev",
+		"dev": "wrangler dev --local",
 		"test": "vitest"
 	},
 	"repository": {
