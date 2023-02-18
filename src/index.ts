@@ -4,6 +4,10 @@ export interface Env {
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		return new Response(JSON.stringify(request.headers, null, process.env.NODE_ENV === 'development' ? '\t' : undefined));
+		let tempHeaders: Record<string, string> = {};
+		request.headers.forEach((value, key) => {
+			tempHeaders[key] = value;
+		});
+		return new Response(JSON.stringify(tempHeaders, null, process.env.NODE_ENV === 'development' ? '\t' : undefined));
 	},
 };
