@@ -27,3 +27,8 @@ jobs:
           node-version: lts/*
           check-latest: true
           cache: 'npm'
+      - uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: publish --var GIT_HASH:${{ github.sha }}
