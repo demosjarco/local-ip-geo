@@ -8,6 +8,10 @@ export default {
 		request.headers.forEach((value, key) => {
 			tempHeaders[key] = value;
 		});
-		return new Response(JSON.stringify(tempHeaders, null, process.env.NODE_ENV === 'development' ? '\t' : undefined));
+		return new Response(JSON.stringify(tempHeaders, null, process.env.NODE_ENV === 'development' ? '\t' : undefined), {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
 	},
 };
