@@ -1,0 +1,8 @@
+name = "local-ip-geo"
+main = "src/index.ts"
+compatibility_date = "2023-02-14"
+compatibility_flags = []
+workers_dev = false
+route = { pattern = "local-ip-geo.demosjarco.dev", custom_domain = true }
+usage_model = "bundled"
+minify = true
