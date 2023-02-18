@@ -1,5 +1,6 @@
 export interface Env {
 	GIT_HASH: string;
+	NODE_ENV: string;
 }
 
 export default {
