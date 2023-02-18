@@ -3,6 +3,7 @@ on:
     paths:
       - ".github/workflows/publish.yml"
       - "src/**"
+      - "tsconfig.json"
       - "wrangler.toml"
   workflow_dispatch:
 
