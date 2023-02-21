@@ -8,8 +8,10 @@ export default {
 		return new Response(
 			JSON.stringify(
 				{
-					lat: Number(request.headers.get('cf-iplatitude')),
-					long: Number(request.headers.get('cf-iplongitude')),
+					dd: {
+						lat: Number(request.headers.get('cf-iplatitude')),
+						long: Number(request.headers.get('cf-iplongitude')),
+					},
 				},
 				null,
 				process.env.NODE_ENV === 'development' ? '\t' : undefined,
