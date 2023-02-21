@@ -16,11 +16,16 @@ describe('Worker', () => {
 		await worker.stop();
 	});
 
-	it('should return Hello World', async () => {
+	it('should return Decimal Degrees (DD)', async () => {
 		const resp = await worker.fetch();
 		if (resp) {
-			const text = await resp.text();
-			expect(text).toMatchInlineSnapshot(`"Hello World!"`);
+			const json = await resp.json();
+
+			expect(json).toHaveProperty('dd');
+			expect(json.dd).toHaveProperty('lat');
+			expect(json.dd.lat).toBeTypeOf('number');
+			expect(json.dd).toHaveProperty('long');
+			expect(json.dd.long).toBeTypeOf('number');
 		}
 	});
 });
