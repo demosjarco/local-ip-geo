@@ -4,7 +4,7 @@
 	"scripts": {
 		"prettier": "prettier --check .",
 		"prettier:fix": "prettier --write .",
-		"dev": "wrangler dev --local",
+		"dev": "wrangler dev --ip \"localhost\" --local-protocol https",
 		"test": "vitest"
 	},
 	"repository": {
