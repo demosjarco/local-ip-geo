@@ -34,7 +34,7 @@ jobs:
           node-version: ${{ matrix.node }}
           check-latest: true
           cache: 'npm'
-      - run: npm ci
+      - run: npm i -D prettier typescript
       - run: npm run test -- run
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
@@ -47,6 +47,8 @@ jobs:
       fail-fast: true
       matrix:
         node: [20-v8-canary, 20-nightly]
+        prettier: [prettier, prettier@next]
+        typescript: [typescript, typescript@beta, typescript@next]
     steps:
       - uses: step-security/harden-runner@v2
         with:
@@ -58,7 +60,7 @@ jobs:
           node-version: ${{ matrix.node }}
           check-latest: true
           cache: 'npm'
-      - run: npm ci
+      - run: npm i -D ${{ matrix.prettier }} ${{ matrix.typescript }}
       - run: npm run test -- run
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
