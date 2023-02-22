@@ -22,7 +22,31 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        node: [lts/*, latest, 20-v8-canary, 20-nightly]
+        node: [lts/*, latest]
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+          disable-sudo: true
+          egress-policy: audit # TODO: change to 'egress-policy: block' 
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test -- run
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  beta-test:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: development
+    strategy:
+      fail-fast: true
+      matrix:
+        node: [20-v8-canary, 20-nightly]
     steps:
       - uses: step-security/harden-runner@v2
         with:
