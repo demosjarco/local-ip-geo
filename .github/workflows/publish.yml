@@ -15,7 +15,25 @@ env:
   NODE_ENV: production
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: development
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+          disable-sudo: true
+          egress-policy: audit # TODO: change to 'egress-policy: block' 
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          check-latest: true
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test -- run
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: step-security/harden-runner@v2
