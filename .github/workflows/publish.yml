@@ -46,7 +46,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [20-v8-canary, 20-nightly]
+        node: [lts/*, latest, 20-v8-canary, 20-nightly]
         prettier: [prettier, prettier@next]
         typescript: [typescript, typescript@beta, typescript@next]
     steps:
