@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        node: [lts/*, latest]
+        node: [lts/*, latest, 20-v8-canary, 20-nightly]
     steps:
       - uses: step-security/harden-runner@v2
         with:
