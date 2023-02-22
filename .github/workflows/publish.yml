@@ -27,7 +27,15 @@ jobs:
       - uses: step-security/harden-runner@v2
         with:
           disable-sudo: true
-          egress-policy: audit # TODO: change to 'egress-policy: block' 
+          egress-policy: audit # TODO: change to 'egress-policy: block'
+          # egress-policy: block
+          # allowed-endpoints: >
+          #   api.cloudflare.com:443
+          #   api.github.com:443
+          #   github.com:443
+          #   local-ip-geo.demosjarco.dev:443
+          #   objects.githubusercontent.com:443
+          #   registry.npmjs.org:443
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -61,6 +69,13 @@ jobs:
         with:
           disable-sudo: true
           egress-policy: audit # TODO: change to 'egress-policy: block' 
+          # egress-policy: block
+          #   allowed-endpoints: >
+          #     api.cloudflare.com:443
+          #     github.com:443
+          #     local-ip-geo.demosjarco.dev:443
+          #     nodejs.org:443
+          #     registry.npmjs.org:443
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
