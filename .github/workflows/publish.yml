@@ -49,6 +49,13 @@ jobs:
         node: [lts/*, latest, 20-v8-canary, 20-nightly]
         prettier: [prettier, prettier@next]
         typescript: [typescript, typescript@beta, typescript@next]
+        exclude:
+          - node: lts/*
+            prettier: prettier
+            typescript: typescript
+          - node: latest
+            prettier: prettier
+            typescript: typescript
     steps:
       - uses: step-security/harden-runner@v2
         with:
