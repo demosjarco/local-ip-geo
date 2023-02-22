@@ -21,11 +21,10 @@ describe('Worker', () => {
 		if (resp) {
 			const json = await resp.json();
 
-			expect(json).toHaveProperty('dd');
-			expect(json.dd).toHaveProperty('lat');
-			expect(json.dd.lat).toBeTypeOf('number');
-			expect(json.dd).toHaveProperty('long');
-			expect(json.dd.long).toBeTypeOf('number');
+			expect(json).toHaveProperty('lat');
+			expect(json.lat).toBeTypeOf('number');
+			expect(json).toHaveProperty('long');
+			expect(json.long).toBeTypeOf('number');
 		}
 	});
 });
