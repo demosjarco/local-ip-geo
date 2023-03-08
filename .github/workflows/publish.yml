@@ -108,6 +108,7 @@ jobs:
           node-version: lts/*
           check-latest: true
           cache: "npm"
+      - run: npm i -D typescript @types/node @cloudflare/workers-types
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
