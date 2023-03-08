@@ -5,8 +5,8 @@
 		"prettier": "prettier --check .",
 		"prettier:fix": "prettier --write .",
 		"dev": "wrangler dev --ip \"localhost\" --local-protocol https",
-		"pretest": "npm i -D @cloudflare/workers-types vitest wrangler",
-		"test": "vitest"
+		"pretest": "npm i -D @cloudflare/workers-types ts-node wrangler",
+		"test": "ts-node tests/index.test.ts"
 	},
 	"repository": {
 		"type": "git",
