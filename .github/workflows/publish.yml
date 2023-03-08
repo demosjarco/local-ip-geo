@@ -1,10 +1,10 @@
 on:
   push:
     paths:
-      - '.github/workflows/publish.yml'
-      - 'src/**'
-      - 'tsconfig.json'
-      - 'wrangler.toml'
+      - ".github/workflows/publish.yml"
+      - "src/**"
+      - "tsconfig.json"
+      - "wrangler.toml"
   workflow_dispatch:
 
 concurrency:
@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: 'npm'
+          cache: "npm"
       - run: npm i -D prettier typescript
       - run: npm run test -- run
         env:
@@ -68,7 +68,7 @@ jobs:
       - uses: step-security/harden-runner@v2
         with:
           disable-sudo: true
-          egress-policy: audit # TODO: change to 'egress-policy: block' 
+          egress-policy: audit # TODO: change to 'egress-policy: block'
           # egress-policy: block
           #   allowed-endpoints: >
           #     api.cloudflare.com:443
@@ -81,7 +81,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           check-latest: true
-          cache: 'npm'
+          cache: "npm"
       - run: npm i -D ${{ matrix.prettier }} ${{ matrix.typescript }}
       - run: npm run test -- run
         env:
@@ -107,7 +107,7 @@ jobs:
         with:
           node-version: lts/*
           check-latest: true
-          cache: 'npm'
+          cache: "npm"
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
