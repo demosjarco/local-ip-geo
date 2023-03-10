@@ -43,7 +43,7 @@ jobs:
           check-latest: true
           cache: "npm"
       - run: npm i -D typescript
-      - run: npm run test -- run
+      - run: npm test
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -80,7 +80,7 @@ jobs:
           check-latest: true
           cache: "npm"
       - run: npm i -D ${{ matrix.typescript }}
-      - run: npm run test -- run
+      - run: npm test
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
