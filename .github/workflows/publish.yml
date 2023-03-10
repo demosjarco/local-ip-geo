@@ -15,77 +15,77 @@ env:
   NODE_ENV: production
 
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     NODE_ENV: development
-  #   strategy:
-  #     fail-fast: true
-  #     matrix:
-  #       node: [lts/*, latest]
-  #   steps:
-  #     - uses: step-security/harden-runner@v2
-  #       with:
-  #         disable-sudo: true
-  #         egress-policy: audit # TODO: change to 'egress-policy: block'
-  #         # egress-policy: block
-  #         # allowed-endpoints: >
-  #         #   api.cloudflare.com:443
-  #         #   api.github.com:443
-  #         #   github.com:443
-  #         #   local-ip-geo.demosjarco.dev:443
-  #         #   objects.githubusercontent.com:443
-  #         #   registry.npmjs.org:443
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node }}
-  #         check-latest: true
-  #         cache: "npm"
-  #     - run: npm i -D typescript
-  #     - run: npm test
-  #       env:
-  #         CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-  #         CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-  # beta-test:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     NODE_ENV: development
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       node: [lts/*, latest, 20-v8-canary, 20-nightly]
-  #       typescript: [typescript, typescript@beta, typescript@next]
-  #       exclude:
-  #         - node: lts/*
-  #           typescript: typescript
-  #         - node: latest
-  #           typescript: typescript
-  #   steps:
-  #     - uses: step-security/harden-runner@v2
-  #       with:
-  #         disable-sudo: true
-  #         egress-policy: audit # TODO: change to 'egress-policy: block'
-  #         # egress-policy: block
-  #         #   allowed-endpoints: >
-  #         #     api.cloudflare.com:443
-  #         #     github.com:443
-  #         #     local-ip-geo.demosjarco.dev:443
-  #         #     nodejs.org:443
-  #         #     registry.npmjs.org:443
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: ${{ matrix.node }}
-  #         check-latest: true
-  #         cache: "npm"
-  #     - run: npm i -D ${{ matrix.typescript }}
-  #     - run: npm test
-  #       env:
-  #         CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-  #         CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  test:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: development
+    strategy:
+      fail-fast: true
+      matrix:
+        node: [lts/*, latest]
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+          disable-sudo: true
+          egress-policy: audit # TODO: change to 'egress-policy: block'
+          # egress-policy: block
+          # allowed-endpoints: >
+          #   api.cloudflare.com:443
+          #   api.github.com:443
+          #   github.com:443
+          #   local-ip-geo.demosjarco.dev:443
+          #   objects.githubusercontent.com:443
+          #   registry.npmjs.org:443
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+          cache: "npm"
+      - run: npm i -D typescript
+      - run: npm test
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  beta-test:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: development
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [lts/*, latest, 20-v8-canary, 20-nightly]
+        typescript: [typescript, typescript@beta, typescript@next]
+        exclude:
+          - node: lts/*
+            typescript: typescript
+          - node: latest
+            typescript: typescript
+    steps:
+      - uses: step-security/harden-runner@v2
+        with:
+          disable-sudo: true
+          egress-policy: audit # TODO: change to 'egress-policy: block'
+          # egress-policy: block
+          #   allowed-endpoints: >
+          #     api.cloudflare.com:443
+          #     github.com:443
+          #     local-ip-geo.demosjarco.dev:443
+          #     nodejs.org:443
+          #     registry.npmjs.org:443
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          check-latest: true
+          cache: "npm"
+      - run: npm i -D ${{ matrix.typescript }}
+      - run: npm test
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
   deploy:
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: step-security/harden-runner@v2
