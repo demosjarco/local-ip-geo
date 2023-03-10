@@ -20,9 +20,9 @@ describe('Worker', () => {
 			const json = await resp.json();
 
 			assert.deepStrictEqual(Object.keys(json).includes('lat'), true);
-			assert.deepStrictEqual(typeof json.lat === 'number', true);
+			assert.deepStrictEqual(typeof json.lat, 'number');
 			assert.deepStrictEqual(Object.keys(json).includes('long'), true);
-			assert.deepStrictEqual(typeof json.long === 'number', true);
+			assert.deepStrictEqual(typeof json.long, 'number');
 		}
 	});
 });
