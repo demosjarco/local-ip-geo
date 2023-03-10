@@ -7,10 +7,7 @@ describe('Worker', () => {
 	let worker: UnstableDevWorker;
 
 	before(async () => {
-		worker = await unstable_dev('src/index.ts', {
-			local: false,
-			experimental: { disableExperimentalWarning: true },
-		});
+		worker = await unstable_dev('src/index.ts', { local: false, experimental: { disableExperimentalWarning: true } });
 	});
 
 	after(async () => {
