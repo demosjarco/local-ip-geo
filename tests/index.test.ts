@@ -11,7 +11,7 @@ describe('Worker', () => {
 	});
 
 	after(async () => {
-		await worker.stop();
+		await worker.waitUntilExit();
 	});
 
 	it('should return Decimal Degrees (DD)', async () => {
