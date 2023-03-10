@@ -4,7 +4,7 @@
 	"scripts": {
 		"prettier": "prettier --check .",
 		"prettier:fix": "prettier --write .",
-		"dev": "wrangler dev --ip \"localhost\" --local-protocol https",
+		"dev": "wrangler dev --local --ip \"localhost\" --local-protocol https",
 		"pretest": "npm i -D --force @cloudflare/workers-types ts-node @swc/core wrangler",
 		"test": "ts-node tests/index.test.ts"
 	},
