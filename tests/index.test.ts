@@ -11,6 +11,7 @@ describe('Worker', () => {
 	});
 
 	after(async () => {
+		await worker.stop();
 		await worker.waitUntilExit();
 	});
 
